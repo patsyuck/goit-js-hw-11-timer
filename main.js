@@ -8,46 +8,29 @@ class CountdownTimer {
 
     getSeconds() {
         const secs = Math.floor((this.time % (1000 * 60)) / 1000)
-        return secs
+        return String(secs).padStart(2, '0')
     }
 
     getMinutes() {
         const mins = Math.floor((this.time % (1000 * 60 * 60)) / (1000 * 60))
-        return mins
+        return String(mins).padStart(2, '0')
     }
 
     getHours() {
         const hours = Math.floor((this.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        return hours
+        return String(hours).padStart(2, '0')
     }
 
     getDays() {
         const days = Math.floor(this.time / (1000 * 60 * 60 * 24))
-        return days
+        return String(days).padStart(2, '0')
     }
 
     render() {
-        this.element.innerHTML = `
-        <div class="field">
-            <span class="value" data-value="days">${this.getDays()}</span>
-            <span class="label">Days</span>
-        </div>
-    
-        <div class="field">
-            <span class="value" data-value="hours">${this.getHours()}</span>
-            <span class="label">Hours</span>
-        </div>
-    
-        <div class="field">
-            <span class="value" data-value="mins">${this.getMinutes()}</span>
-            <span class="label">Minutes</span>
-        </div>
-    
-        <div class="field">
-            <span class="value" data-value="secs">${this.getSeconds()}</span>
-            <span class="label">Seconds</span>
-        </div>
-        `
+        this.element.querySelector('.value[data-value="days"]').innerHTML = `${this.getDays()}`
+        this.element.querySelector('.value[data-value="hours"]').innerHTML = `${this.getHours()}`
+        this.element.querySelector('.value[data-value="mins"]').innerHTML = `${this.getMinutes()}`
+        this.element.querySelector('.value[data-value="secs"]').innerHTML = `${this.getSeconds()}`
     }
 
     init() {
